@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box-set {
+        position: relative;
+        height: 400px;
+        background: darkgray;
+        }
+
+        /* .box {
+        width: 150px;
+        height: 150px;
+        background: #2db34a;
+        border: 2px solid black;
+        } */
+        /* 
+        fixed       = to main window/body
+        absolute    = to parent container
+        relative    = to original position
+        static      = orignal position
+
+        */
+        .box {
+        position: fixed;
+        width: 150px;
+        height: 150px;
+        background: #2db34a;
+        border: 2px solid black;
+        }
+
+        .box-1 {
+        top: 6%;
+        left: 2%;
+        }
+
+        .box-2 {
+        top: 0;
+        right: -40px;
+        }
+
+        .box-3 {
+        right: 20px;
+        bottom: -10px;
+        }
+
+        .box-4 {
+        bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="box-set">
+        <figure class="box box-1">Box 1</figure>
+        <figure class="box box-2">Box 2</figure>
+        <figure class="box box-3">Box 3</figure>
+        <figure class="box box-4">Box 4</figure>
+      </div>
+</body>
+</html>

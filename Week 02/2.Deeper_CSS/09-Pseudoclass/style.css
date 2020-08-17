@@ -1,0 +1,28 @@
+a{
+    font-size: larger;
+}
+a:hover{
+    background-color: red;
+}
+a:focus{
+    background-color: orange;
+}
+a:active{
+    background-color: blue;
+}
+
+div{
+    width: 300px;
+    height: 300px;
+    align-content: center;
+    text-align: center;
+}
+div:hover{
+    background-color: red;
+}
+div:focus{
+    background-color: orange;
+}
+div:active{
+    background-color: blue;
+}
