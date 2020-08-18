@@ -1,24 +1,37 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Looping Through Arrays</title>
-  </head>
-  <body>
 
-    <h1>Open the console to see the magic!</h1>
+<head>
+  <meta charset="UTF-8">
+  <title>Looping Through Arrays</title>
+</head>
 
-    <script>
+<body>
 
-      // Creating an array of vegetables.
-      var vegetables = ["Carrots", "Peas", "Lettuce", "Tomatoes"];
+  <h1>Open the console to see the magic!</h1>
 
-      // Looping through each item in the array and logging a message to the console.
-      for (var i = 0; i < vegetables.length; i++) {
-        console.log("I love " + vegetables[i]);
-      }
+  <script>
+    // * With a partner, spend a few moments trying to dissect the code in the file.
 
-    </script>
+    // * Try to explain to one another what is happening with each line of code.
+
+    // * Feel free to do research if you are stumped. As a hint, look into the phrase "for loop."
+
+
+    // Creating an array of vegetables.
+    var vegetables = ["Carrots", "Peas", "Lettuce", "Tomatoes"];
     
-  </body>
+    console.log( vegetables.length);
+
+    // Looping through each item in the array and logging a message to the console.
+    for (var i = 0; i < vegetables.length; i++) {
+
+      console.log(i + " I love " + vegetables[i]);
+
+    }
+
+  </script>
+
+</body>
+
 </html>

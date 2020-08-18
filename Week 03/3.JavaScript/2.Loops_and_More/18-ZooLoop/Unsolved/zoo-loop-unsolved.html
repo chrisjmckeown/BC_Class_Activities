@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Loops</title>
-  </head>
-  <body>
 
-    <h1>Open the console to see the magic!</h1>
+<head>
+  <meta charset="UTF-8">
+  <title>Loops</title>
+</head>
 
-    <script>
+<body>
 
-      // Array of zoo animals.
-      var zooAnimals = ["Zebra", "Rhino", "Giraffe", "Owl"];
+  <h1>Open the console to see the magic!</h1>
 
-      // Rewrite the following code to print all of the animals using a for-loop.
-      console.log(zooAnimals[0]);
-      console.log(zooAnimals[1]);
-      console.log(zooAnimals[2]);
-      console.log(zooAnimals[3]);
+<!-- * Use `for` loops to rewrite the file.
 
-    </script>
+* If you need help, use the code from the previous example as a guide.
+
+* Once you think your code is functioning properly, share it with the person sitting next to you. -->
+  <script>
+
+    // Array of zoo animals.
+    var zooAnimals = ["Zebra", "Rhino", "Giraffe", "Owl"];
+
+    // Rewrite the following code to print all of the animals using a for-loop.
+    console.log(zooAnimals[0]);
+    console.log(zooAnimals[1]);
+    console.log(zooAnimals[2]);
+    console.log(zooAnimals[3]);
     
-  </body>
+    for(var i=0; i< zooAnimals.length; i++ ){
+      console.log("Animal number " + i + " "  + zooAnimals[1]);
+    }
+
+  </script>
+
+</body>
+
 </html>

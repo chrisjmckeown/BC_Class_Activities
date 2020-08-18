@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Array Printing</title>
-  </head>
-  <body>
 
-    <h1>Open the console to see the magic!</h1>
+<head>
+  <meta charset="UTF-8">
+  <title>Array Printing</title>
+</head>
 
-    <script>
+<body>
 
+  <h1>Open the console to see the magic!</h1>
+
+  <script>
+    // * Follow the instructions provided in the file to `console.log` each of the names in the `coolPeople` variable.
+
+    // * **HINT:** You should be repeating the same line 6 times.
     // Use this Array
     var coolPeople = ["bruce lee", "arnold schwarzenegger", "will smith", "esther", "marie curie", "joan of arc"];
 
@@ -18,11 +22,21 @@
 
 
     // CODE GOES HERE
+    console.log(coolPeople[0]);
+    console.log(coolPeople[1]);
+    console.log(coolPeople[2]);
+    console.log(coolPeople[3]);
+    console.log(coolPeople[4]);
+    console.log(coolPeople[5]);
 
-
+    var i;
+    for (i = 0; i < coolPeople.length; i++) {
+      console.log(coolPeople[i]);
+    }
     // ...
 
-    </script>
+  </script>
 
-  </body>
+</body>
+
 </html>
