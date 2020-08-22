@@ -1,40 +1,48 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Recap Conditionals and Loops</title>
-  </head>
-  <body>
 
-    <h1>Open the console to see the magic!</h1>
+<head>
+  <meta charset="UTF-8">
+  <title>Recap Conditionals and Loops</title>
+</head>
 
-    <script>
+<body>
 
-      // Instructions:
-      // Using the given arrays, complete the questions below!
+  <h1>Open the console to see the magic!</h1>
 
-      // Rows of Students
-      var studentsRow1 = ["Rachelle", "Jacob", "Jerome", "Greg", "Matt", "Walt"];
-      var studentsRow2 = ["Jeremiah", "Luis", "Nathan", "Analben"];
-      var studentsRow3 = ["Aisha", "Stephen", "John"];
+  <script>
 
-      // Entire Class
-      var entireClass = [studentsRow1, studentsRow2, studentsRow3];
+    // Instructions:
+    // Using the given arrays, complete the questions below!
 
+    // Rows of Students
+    var studentsRow1 = ["Rachelle", "Jacob", "Jerome", "Greg", "Matt", "Walt"];
+    var studentsRow2 = ["Jeremiah", "Luis", "Nathan", "Analben"];
+    var studentsRow3 = ["Aisha", "Stephen", "John"];
 
-      // How do we print out every single student in Row 1?
-
-
-      // How do we print out every student in Row 2 whose first name begins with J?
+    // Entire Class
+    var entireClass = [studentsRow1, studentsRow2, studentsRow3];
 
 
-      // Using the entireClass array, how do we access the second student in row 3?
+    // How do we print out every single student in Row 1?
 
 
-      // Using the entireClass array, how do we access the third student in row 2?
+    // How do we print out every student in Row 2 whose first name begins with J?
 
 
-    </script>
-    
-  </body>
+    // Using the entireClass array, how do we access the second student in row 3?
+
+
+    // Using the entireClass array, how do we access the third student in row 2?
+
+    for (var i = 0; i < entireClass.length; i++) {
+      for (var j = 0; j < entireClass[i].length; j++) {
+          console.log(entireClass[i][j]);
+      }
+    }
+
+  </script>
+
+</body>
+
 </html>

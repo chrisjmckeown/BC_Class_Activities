@@ -6,6 +6,11 @@
   </head>
   <body>
 
+    <!-- * With a partner, spend the next few moments studying the code in the file above.
+
+    * Then write code below each comment to log the relevant information about the provided `car` object.
+
+    * **BONUS:** If you finish early, create a brand new object of your own. Slack out a snippet of the code to the class when you are done. Be creative! -->
     <script>
 
       var car = {
@@ -15,52 +20,68 @@
         mileage: 3000,
         isWorking: true,
 
-        driveToWork: function() {
+        driveToWork: function(driver) {
 
-          alert("Old Mileage: " + this.mileage);
+          console.log("Driver: " + driver);
+
+          console.log("Old Mileage: " + this.mileage);
 
           this.mileage = this.mileage + 8;
 
-          alert("New mileage: " + this.mileage);
+          console.log("New mileage: " + this.mileage);
         },
 
         driveAroundWorld: function() {
 
-          alert("Old Mileage: " + this.mileage);
+          console.log("Old Mileage: " + this.mileage);
 
           this.mileage = this.mileage + 24000;
 
-          alert("New Mileage: " + this.mileage);
-          alert("Car needs a tuneup!");
+          console.log("New Mileage: " + this.mileage);
+          console.log("Car needs a tuneup!");
 
           this.isWorking = false;
         },
 
         getTuneUp: function() {
-          alert("Car is ready to go!");
+          console.log("Car is ready to go!");
           this.isWorking = true;
         },
 
         honk: function() {
-          alert("Honk! Honk!");
+          console.log("Honk! Honk!");
         }
       };
 
 
       // How would we log...
 
-      // The car's make?
+      // The car's make? 
+        console.log(car.make);
 
       // The car's model?
+        console.log(car.model);
 
       // The car's mileage?
+        console.log(car.mileage);
 
       // How would we run the car's driveToWork method?
+        car.driveToWork("Pete");
 
       // How would we run the car's driveAroundWorld method?
+       car.driveAroundWorld();
 
       // How would we run the getTuneUp method?
+        car.getTuneUp();
 
+
+        var threeDPrinters = {
+        make: "Prusa",
+        model: "mini",
+        color: "Orange and Black",
+        filament: ["ASA/ABS", "PLA", "PLA", "FLEX", "SPECIAL"],
+        bedheated: true,
+      };
     </script>
     
   </body>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- * From scratch, create a small application that will do two things:
+
+1. Check which OS the user is on and alert a message that says, _"Welcome, Windows user!"_ or, _"Welcome, Mac user!"_
+
+2. Then check their **geolocation** and redirect them to a new page depending on if they are located in the eastern or western half of the USA.
+
+* You'll need to do some research on how to gather some of this information, but here's a hint: it's going to be part of the `window` object we just looked at. -->
+    <script>
+
+        function getOS() {
+             console.log(window);
+            var operatingSystem = window.navigator.platform.toLowerCase();
+            if (operatingSystem.indexOf("win") !== -1) {
+                console.log("Welcome, Windows user!");
+                getLocation();
+            }
+            else  if (operatingSystem.indexOf("mac") !== -1){
+                console.log("Welcome, Mac user!");
+                getLocation();
+            }
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                console.log("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function showPosition(position) {
+                console.log(position);
+            var long = position.coords.longitude;
+            var lat = position.coords.latitude;
+            console.log("Latitude: " + Math.floor(position.coords.latitude) +
+                " Longitude: " + Math.floor(position.coords.longitude));
+
+            if(Math.floor(lat) === -38 && Math.floor(long) === 144){
+                //window.location.href = "Australia.html";
+                console.log("Melbourne");
+            }
+            else{
+               // window.location.href = "NewZealand.html";
+                console.log("Somewhere else");
+            }
+        }
+        
+        getOS();
+    </script>
+</body>
+
+</html>
