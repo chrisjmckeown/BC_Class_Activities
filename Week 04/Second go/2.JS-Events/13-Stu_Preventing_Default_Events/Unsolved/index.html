@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tip Calculator</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div class="container">
+      <h1>Tip Calculator</h1>
+      <h4>Enter the total price of your meal below</h4>
+      <form id="form">
+        <input id="total" placeholder="1.00" type="number" min="0" max="1000"  />
+        <input id="tip" placeholder="10%" type="number" min="0" max="100"/>
+        <button id="submit">Calculate Tip</button>
+      </form>
+      <div>
+        <h4>Tip amount: <span id="tip-amount"></span></h4>
+        <h2>Total: <span id="new-total"></span></h2>
+        <br><br>
+      </div>      
+      <form id="form">
+        <input id="splitWays" placeholder="1.00" type="number" min="1" max="10"  />
+        <h2>Split Total: <span id="split-total"></span></h2>
+        <button id="submitSplit">Calculate Split</button>
+      </form>
+  </div>
+  
+  <script src="./script.js"></script>
+</body>
+
+</html>
