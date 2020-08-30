@@ -75,7 +75,7 @@ function startTimer() {
       initTimer();
     }
     else {
-      secondsElapsed--;
+      0--;
       calculateMinutesSeconds();
     }
   }, 60);
