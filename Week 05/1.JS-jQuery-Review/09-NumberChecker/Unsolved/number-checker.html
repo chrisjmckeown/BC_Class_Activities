@@ -60,16 +60,29 @@
         </div>
 
         <script type="text/javascript">
-          $(document).ready(function() {
+          $(document).ready(function () {
 
             // Here we create the on click event that gets the user's pick
-            $(".btn-choice").on("click", function() {
+            $(".btn-choice").on("click", function (event) {
 
-              console.log("You clicked a button!!");
+              event.stopPropagation();
+              //console.log("You clicked a button!!");
 
+              //console.log(randomNumber);
               // Add code to have the computer guess a random number between 1 and 4
+              var randomNumber = Math.floor(Math.random() * 4) + 1 + "";
+              $("#computer-pick").text(randomNumber);
               // Then determine which button was clicked
+              console.log(this.value);//event.target.textContent.trim());// use this.value
+              var clickedButton = event.target.textContent.trim();
               // Compare the computer and user guess
+              console.log(randomNumber, clickedButton, this.value);
+              if (randomNumber === clickedButton) {
+                $("#result").text("Correct");
+              }
+              else {
+                $("#result").text("Wrong");
+              }
               // Inform the user if the've guessed correctly or incorrectly
 
             });

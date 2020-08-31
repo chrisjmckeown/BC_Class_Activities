@@ -24,14 +24,24 @@
     // This document.ready isn't necessary in this example... but is needed in cases where the HTML is complex.
     // This code makes sure that the JavaScript doesn't get run until the HTML is finished loading
     // It's useful to become familiar with now.
+    // * Add in the missing code such that clicking any of the sandwiches causes…
 
-    $(document).ready(function() {
+    // 1. An alert message to popup saying something snarky about the sandwich type.
+
+    // 2. A second alert message that displays to the user how many of that specific sandwich they've eaten.
+
+    // 3. **HINT:** You will need counter variables.
+
+    // * **BONUS:** Add an image to the `image-div` on the click event.
+    $(document).ready(function () {
 
       // VARIABLES
       // ====================================================================
       // Here we create variables for tracking the number of sandwiches eaten
       // ...
-
+      var pbj = 0;
+      var grilledcheese = 0;
+      var roastbeef = 0;
 
       // ...
 
@@ -41,12 +51,27 @@
       // Inside each click event is the code to create an alert, update the counter, then show the updated count.
       // ...
 
+      $("#pbj").on("click", function () {
+        pbj++;
+        alert("You've eaten: " + pbj + " Peanut Butter Jelly Sandwiches.");
+        $("#image-div").html("<img alt='Peanut Butter Jelly Sandwich' src='pb.jpg'/>");
+      });
+      $("#grilledcheese").on("click", function () {
+        grilledcheese++;
+        alert("You've eaten: " + grilledcheese + " Grilled Cheese Sandwiches.");
+        $("#image-div").html("<img alt='Peanut Butter Jelly Sandwich' src='gc.jpg'/>");
+      });
+      $("#roastbeef").on("click", function () {
+        roastbeef++;
+        alert("You've eaten: " + roastbeef + " Roast Beef Sandwiches.");
+        $("#image-div").html("<img alt='Peanut Butter Jelly Sandwich' src='rb.jpg'/>");
+      });
 
       // ...
 
     });
 
-</script>
+  </script>
 
 </body>
 

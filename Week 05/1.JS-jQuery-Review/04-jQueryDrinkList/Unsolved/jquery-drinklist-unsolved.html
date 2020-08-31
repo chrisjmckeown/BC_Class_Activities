@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>JavaScript Content!</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
+
 <body>
 
   <h1>Drink Selection!</h1>
@@ -28,8 +31,17 @@
     // Using JavaScript programmatically append each drinkList item to the "drink-options" div
     // HINT: you will need a for loop to go over each element in the list
 
+    var drinkUL = $("<ul>");
+    $("#drink-options").append(drinkUL);
+
+    drinkList.forEach(function (drink) {
+      var newdrink = $("<li>");
+      newdrink.text(drink);
+      $(drinkUL).append(newdrink);
+    });
 
   </script>
 
 </body>
+
 </html>
