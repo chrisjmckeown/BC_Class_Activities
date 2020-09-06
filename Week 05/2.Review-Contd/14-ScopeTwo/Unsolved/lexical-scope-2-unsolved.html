@@ -16,10 +16,10 @@
       printInfo: function() {
         console.log("inside printInfo()");
 
-        // What will this print?
+        // What will this print? object?
         console.log(this);
 
-        // What will this print?
+        // What will this print? Gus gray 15
         console.log("Name:", this.name, "Color:", this.color, "Age:", this.age);
 
         var nestedFunction = function() {
@@ -33,12 +33,24 @@
         };
 
         nestedFunction();
+
+        function test () {
+          console.log("test nestedFunction()");
+
+          // What will this print?
+          console.log(this);
+
+          // What will this print?
+          console.log("Name:", this.name, "Color:", this.color, "Age:", this.age);
+        };
+
+        return test;
       }
     };
 
     // calls the printInfo function. Which subsequently calls the nestedFunction()
-    cat.printInfo();
-
+    var tt = cat.printInfo();
+    tt();
 </script>
 
 </body>

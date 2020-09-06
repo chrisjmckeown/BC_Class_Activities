@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Correct Color Picker</title>
@@ -18,6 +19,7 @@
   </style>
 
 </head>
+
 <body>
 
   <div class="container">
@@ -47,7 +49,7 @@
   <script>
 
     // JavaScript function that wraps everything
-    $(document).ready(function() {
+    $(document).ready(function () {
 
       // Array for word colors
       var colorsOfText = [];
@@ -75,47 +77,69 @@
       function randColor() {
 
         // Set random word
-
-
         // Set random word color
+        targetColorOfText = colors[Math.floor(Math.random() * colors.length)];
+        targetColor = colors[Math.floor(Math.random() * colors.length)];
+        $("#rand-target-color").text(targetColor).css("color", targetColorOfText);
+      }
 
-
+      function shuffle(array) {
+        array.sort(() => Math.random() - 0.5);
       }
 
       // This function creates the actual "game" logic.
       function createColorPicker() {
 
         // Shuffle color array
-
-
+        shuffle(colors);
 
         // Push to text color array
-
-
+        colorsOfText = [...colors]
 
         // Shuffle text color array
-
+        shuffle(colorsOfText);
 
         // Loop through all colors in the array
-        // Create element to hold word
-        // Output a word
-        // Make word a random color
+        for (var i = 0; i < colors.length; i++) {
 
+          // Create element to hold word
+          var holder = $("<li>");
+          $("#color-picker").append(holder);
+
+          // Output a word
+          // Make word a random color
+          $(holder).attr("id", colors[i]).text(colors[i]).css("color", colorsOfText[i]);
+        }
       }
 
       // Clear the divs and arrays upon each round.
       function clear() {
-
+        $("#rand-target-color").empty();
+        $("#color-picker").empty();
+        colorsOfText = [];
       }
 
       // Function for resetting colors and setting new colors.
       function reset() {
-
+        clear();
+        randColor();
+        createColorPicker();
       }
 
       // Get id of element clicked by user
-      $("#color-picker").click(function(event) {
+      $("#color-picker").click(function (event) {
+        userAnswer = event.target.id;
 
+        // Compare id to target id
+        console.log(userAnswer, targetColorOfText)
+        if (userAnswer === targetColorOfText) {
+          alert("You win!");
+          reset();
+        }
+        else {
+          alert("Wrong!");
+          reset();
+        }
       });
 
       // Run game
@@ -124,4 +148,5 @@
 
   </script>
 </body>
+
 </html>
