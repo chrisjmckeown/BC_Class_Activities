@@ -42,9 +42,17 @@
     }).then(function(response) {
 
       // Create and save a reference to new empty table row
+      var tablerow = $('<tr>');
       // Create and save references to 3 td elements containing the Title, Year, and Actors from the AJAX response object
+      var col1 = $('<td>').text(response.Title);
+      var col2 = $('<td>').text(response.Year);
+      var col3 = $('<td>').text(response.Actors);
       // Append the td elements to the new table row
+      tablerow.append(col1);
+      tablerow.append(col2);
+      tablerow.append(col3);
       // Append the table row to the tbody element
+      $(".table").find('tbody').append(tablerow);
     });
 
     // Repeat the above logic to add rows for two more movies of your choice

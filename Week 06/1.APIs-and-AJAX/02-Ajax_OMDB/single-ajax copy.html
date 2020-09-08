@@ -11,8 +11,8 @@
   
   <script type="text/javascript">
     // constructing a queryURL variable we will use instead of the literal string inside of the ajax method
-    var title = "space+jam";
-    var queryURL = "https://www.omdbapi.com/?t=" + title + "&y=&plot=short&apikey=trilogy";
+    var title = "the+terminator";
+    var queryURL = "https://www.omdbapi.com/?t=" + title + "&y=&plot=full&apikey=trilogy&r=json&type=movie&callback";
 
     $.ajax({
       url: queryURL,
@@ -20,6 +20,11 @@
     }).then(function(response) {
       console.log(response);
       console.log(response.Runtime);
+      console.log(response.Plot);
+    }).catch(function(err) {                    // standard function           
+        console.log('firing catch ', err);
+    }).always(() => {                           // arrow function
+        console.log('clean-up');
     });
 // ---------------------------------------------------------
 
