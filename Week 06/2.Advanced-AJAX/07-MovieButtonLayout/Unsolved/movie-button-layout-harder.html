@@ -29,6 +29,10 @@
       <!-- Button triggers new movie to be added -->
       <input id="add-movie" type="submit" value="Add a Movie, Yo!">
     </form>
+
+
+    <div id="movie-view"></div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
       // Initial array of movies
@@ -36,20 +40,46 @@
 
       // Function for displaying movie data
       function renderButtons() {
-
         // YOUR CODE GOES HERE
+        $("#buttons-view").empty();
 
+        movies.forEach(function (movie) {
+          // var a = $("<button>"); a.addClass("movie"); a.attr("data-name", movie); a.text(movie); $("#buttons-view").append(a);
+          $("#buttons-view").append('<button class="movie" data-name="' + movie + '">' + movie + '</button>')
+        });
       }
 
       // This function handles events where one button is clicked
-      $("#add-movie").on("click", function() {
-
+      $("#add-movie").on("click", function (event) {
+        event.preventDefault();
         // YOUR CODE GOES HERE
-
-      });
+        var movie = $("#movie-input").val().trim();
+        movies.push(movie);
+        $("#buttons-view").append('<button class="movie" data-name="' + movie + '">' + movie + '</button>')
+        });
 
       // Calling the renderButtons function to display the initial list of movies
       renderButtons();
+
+      $(document.body).on('click', '.movie', function (event) {
+        var movie = $(this).attr("data-name");
+        var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
+
+        $.ajax({ url: queryURL, method: 'GET' }).then(function (response) {
+          console.log("Searched for: " + movie + " Response: " + response);
+          console.log(response);
+          if (response.Response === "False") {
+            console.log(response.Error);
+          }
+          else {
+            $("#movie-view").html(JSON.stringify(response));
+          }
+        }).catch(function (err) {
+          console.log("error");
+        }).always(function () {
+          console.log("Complete");
+        });
+      });
     </script>
   </div>
 </body>

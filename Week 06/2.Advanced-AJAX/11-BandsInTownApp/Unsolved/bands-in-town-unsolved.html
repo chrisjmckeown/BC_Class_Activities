@@ -37,10 +37,44 @@
     // The number of upcoming events for this artist
     // A link to the bandsintown url for this artist
     // Note: Append actual HTML elements, not just text
+
+    //var artistName = $("#artist-input").val().trim();
+    var queryURL = "https://rest.bandsintown.com/artists/" + artist + "?app_id=codingbootcamp";
+
+    $.ajax({ url: queryURL, method: 'GET' }).then(function (response) {
+      $("#artist-div").empty();
+      // var ref = $("<a />");
+      // ref.attr("href",response.url );
+      // $("#artist-div").append(ref);
+      // ref.append("<h1>" + response.name + "</h1>");
+      // $("#artist-div").append('<img src="' + response.thumb_url + '"></img>');
+      // $("#artist-div").append("<p>Number of Fan: " + response.tracker_count + "</p>")
+      // $("#artist-div").append("<p>Number of upcoming events: " + response.upcoming_event_count + "</p>")
+
+      // var link = $("<a />");
+      // link.attr("href",response.url );
+      // $("#artist-div").append(link);
+      // link.append("<p>" + "See tour dates" + "</p>")
+
+      // simplify
+      var header = $("<a />").attr("href", response.url).append("<h1>" + response.name + "</h1>")
+      var image =  $("<img>").attr("src", response.thumb_url);
+      var fanCount = $("<p>").text("Number of Fan: " + response.tracker_count);
+      var events = $("<p>").text("Number of upcoming events: " + response.upcoming_event_count);
+      var link = $("<a>").attr("href", response.url).text(response.name);
+      $("#artist-div").append(header,image, fanCount, events, link);
+
+    }).catch(function (err) {
+      console.log(err);
+    }).always(function () {
+      console.log("complete");
+    });
+
+
   }
 
   // Event handler for user clicking the select-artist button
-  $("#select-artist").on("click", function(event) {
+  $("#select-artist").on("click", function (event) {
     // Preventing the button from trying to submit the form
     event.preventDefault();
     // Storing the artist name

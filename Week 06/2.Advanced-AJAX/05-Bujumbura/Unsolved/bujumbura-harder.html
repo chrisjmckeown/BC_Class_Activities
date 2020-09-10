@@ -16,34 +16,81 @@
   <script type="text/javascript">
     // Things to accomplish:
     // Get an API Key from OpenWeatherMap API
-    var APIKey = "166a433c57516f51dfab1f7edaed8413";
+    var APIKey = "53b3da334ab80c9261f53586ac885ee0";
     var city = "Bujumbura, Burundi";
     // Create an AJAX call to retrieve data Log the data in console
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
     // Log the data in HTML
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).then(function (response) {
-      // Create CODE HERE to Log the queryURL
-      console.log(queryURL);
-      // Create CODE HERE to log the resulting object
-      console.log(response);
-      // Create CODE HERE to calculate the temperature (converted from Kelvin)
-      // Create CODE HERE to transfer content to HTML
-      $(".city").text(response.name);
-      $(".wind").text("Wind deg: " + response.wind.deg + " Speed: " + response.wind.speed);
-      $(".humidity").text(response.main.humidity);
-      var F = (response.main.temp - 273.15) * 1.80 + 32
-      $(".temp").text(F.toFixed(2));
-      // Hint: To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
-      // Create CODE HERE to dump the temperature content into HTML
 
+    $.ajax({ url: queryURL, method: 'get' }).then(function (response) {
+      console.log(response);
+
+      $(".city").text(response.name);
+      $(".wind").text(response.wind.deg + " " + response.wind.speed);
+      $(".humidity").text(response.main.humidity);
+      var F = ((response.main.temp - 273.15) * 1.80 + 32).toFixed(2)
+      $(".temp").text(F);
+
+      console.log(response.name);
+      console.log(response.wind.deg + " " + response.wind.speed);
+      console.log(response.main.humidity);
+      console.log(F);
     }).catch(function(err){
       console.log(err);
-    }).always(() => {                           // arrow function
-        console.log('clean-up');
+    }).always(function(){
+      console.log("end");
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // $.ajax({
+    //   url: queryURL,
+    //   method: "GET"
+    // }).then(function (response) {
+    //   // Create CODE HERE to Log the queryURL
+    //   console.log(queryURL);
+    //   // Create CODE HERE to log the resulting object
+    //   console.log(response);
+    //   // Create CODE HERE to calculate the temperature (converted from Kelvin)
+    //   // Create CODE HERE to transfer content to HTML
+    //   $(".city").text(response.name);
+    //   $(".wind").text("Wind deg: " + response.wind.deg + " Speed: " + response.wind.speed);
+    //   $(".humidity").text(response.main.humidity);
+    //   var F = (response.main.temp - 273.15) * 1.80 + 32
+    //   $(".temp").text(F.toFixed(2));
+    //   // Hint: To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
+    //   // Create CODE HERE to dump the temperature content into HTML
+
+    // }).catch(function(err){
+    //   console.log(err);
+    // }).always(() => {                           // arrow function
+    //     console.log('clean-up');
+    // });
     // Scream Ushindi (victory in Swahili)! at the top of your lungs
   </script>
 

@@ -26,8 +26,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
       // This .on("click") function will trigger the AJAX Call
-      $("#find-movie").on("click", function(event) {
-
+      $("#find-movie").on("click", function (event) {
         // Preventing the submit button from trying to submit the form
         // We're optionally using a form so the user may hit Enter to search instead of clicking the button
         event.preventDefault();
@@ -35,6 +34,7 @@
         // Here we grab the text from the input box
         var movie = $("#movie-input").val();
 
+        console.log(movie);
         // Here we construct our URL
         var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
 
@@ -46,6 +46,21 @@
         // =================================================================
 
         // CODE GOES HERE
+        $.ajax({ url: queryURL, method: 'GET' }).then(function (response) {
+          console.log("Searched for: " + movie + " Response: " + response);
+          console.log(response);
+          if (response.Response === "False") {
+            console.log(response.Error);
+          }
+          $("#movie-view").html(JSON.stringify(response));
+          // $("#movie-view").html(response);
+        }).catch(function (err) {
+          console.log("error");
+          console.log(err.response);
+          console.log(err.error);
+        }).always(function () {
+          console.log("Complete");
+        });
 
         // =================================================================
       });
