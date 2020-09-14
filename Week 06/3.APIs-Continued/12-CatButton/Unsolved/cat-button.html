@@ -12,34 +12,39 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
-    //
+    // jquery on click event listener
     $("#cat-button").on("click", function() {
 
-      //
-      var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=cats";
+      // creating query url with parameters
+      var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=dogs";
 
-      //
+      // init the ajax query with url and method get
+      // url: the url we want to get the information from
+      // method: the type of HTTP method
       $.ajax({
         url: queryURL,
         method: "GET"
       })
 
-      //
+      // call successful run the function
+      // it is asyn so we have to wait
+      // happy scenario
         .then(function(response) {
 
-        //
+        // extracting the url from the responce, traversing the JSON
           var imageUrl = response.data.image_original_url;
 
-          //
+          // create the image tag
           var catImage = $("<img>");
 
-          //
+          // setting the attr for src and alt
           catImage.attr("src", imageUrl);
           catImage.attr("alt", "cat image");
 
-          //
+          // pre-pending to the image div
           $("#images").prepend(catImage);
         });
+        // catch for error (missing from the example)
     });
   </script>
 </body>

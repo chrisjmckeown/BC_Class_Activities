@@ -26,6 +26,16 @@
     <!-- **************************************** -->
 
     <!-- YOUR BUTTONS GO HERE!!!!!! Delete this comment and put your buttons here.  -->
+    
+    <button data-person="mr bean">
+      Funny guy
+    </button>
+    <button data-person="Taylor Swift">
+      Taylor Swift
+    </button>
+    <button data-person="Samuel Jackson">
+      Samuel Jackson
+    </button>
 
     <!-- **************************************** -->
 
@@ -41,17 +51,20 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
+
     $("button").on("click", function() {
-      var person = $(this).attr("data-person");
+      
+      var person = $(this).attr("data-person"); //this is the reference to the button clicked
       var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
         person + "&api_key=dc6zaTOxFJmzC&limit=10";
-
+        $("#gifs-appear-here").empty();
       $.ajax({
         url: queryURL,
         method: "GET"
       })
         .then(function(response) {
           var results = response.data;
+          console.log(results);
 
           for (var i = 0; i < results.length; i++) {
             var gifDiv = $("<div>");
