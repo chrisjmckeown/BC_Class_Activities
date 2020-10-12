@@ -1,0 +1,14 @@
+{
+  "name": "15-stu_inquirer-users",
+  "version": "1.0.0",
+  "description": "In this activity, you will build a simple command line application that accepts user input and writes it to a `.json` file.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^7.3.3"
+  }
+}

@@ -11,7 +11,7 @@ function changeBlue(event) {
 }
 
 function changePurple(event) {
-  // event.stopPropagation();
+   //event.stopPropagation();
   event.currentTarget.setAttribute(
     "style",
     "background-color: purple"
@@ -19,7 +19,7 @@ function changePurple(event) {
 }
 
 function changeOrange(event) {
-  // event.stopPropagation();
+   //event.stopPropagation();
   event.currentTarget.setAttribute(
     "style",
     "background-color: orange"

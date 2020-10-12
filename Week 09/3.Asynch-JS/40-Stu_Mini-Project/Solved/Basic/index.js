@@ -73,6 +73,11 @@ promptUser()
   })
   .then(function() {
     console.log("Successfully wrote to index.html");
+    setTimeout(function() {  }, 5000);
+    return;
+  })
+  .then(function() {
+    console.log("next");
   })
   .catch(function(err) {
     console.log(err);
