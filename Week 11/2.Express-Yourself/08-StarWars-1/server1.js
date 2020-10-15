@@ -26,20 +26,25 @@ var darthmaul = {
 //
 
 // YOUR CODE GOES HERE
-
+var obiwankenobi = {
+  name: "Obi Wan Kenobi",
+  role: "Jedi Master",
+  age: 200,
+  forcePoints: 1800
+};
 //
 
 // Routes
 // ===========================================================
-app.get("/", function(req, res) {
+app.get("/", (req, res) => {
   res.send("Welcome to the Star Wars Page!");
 });
 
-app.get("/yoda", function(req, res) {
+app.get("/yoda", (req, res) => {
   res.json(yoda);
 });
 
-app.get("/darthmaul", function(req, res) {
+app.get("/darthmaul", (req, res)  => {
   res.json(darthmaul);
 });
 
@@ -51,8 +56,12 @@ app.get("/darthmaul", function(req, res) {
 //
 //
 
+app.get("/obiwankenobi", (req, res)  => {
+  res.json(obiwankenobi);
+});
+
 // Listener
 // ===========================================================
-app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
+app.listen(PORT, () =>{
+  console.log("Server listening on: http://localhost:" + PORT);
 });

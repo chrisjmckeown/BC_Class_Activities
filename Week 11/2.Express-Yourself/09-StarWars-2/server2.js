@@ -28,15 +28,22 @@ var characters = [{
 
 // Routes
 // ===========================================================
-app.get("/", function(req, res) {
+app.get("/", (req, res) => {
   res.send("Welcome to the Star Wars Page!");
 });
 
-app.get("/:character", function(req, res) {
+app.get("/:character", (req, res) => {
   var chosen = req.params.character;
 
   // What does this log?
   console.log(chosen);
+  const found = characters.some(char => char.name === chosen);
+
+  if (found) {
+    res.json(characters.filter(char => char.name === chosen));
+  } else {
+    res.status(400).json({ msg: `No character with the name of ${chosen}, please try again` });
+  }
 
   res.end();
 });
@@ -44,6 +51,6 @@ app.get("/:character", function(req, res) {
 
 // Listener
 // ===========================================================
-app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
+app.listen(PORT, () => {
+  console.log("Server listening on: http://localhost:" + PORT);
 });

@@ -63,7 +63,7 @@
   </div>
 
   <script type="text/javascript">
-    // Question: What does this code do?
+    // Question: What does this code do? list for button click, and create new character object
     $("#add-btn").on("click", function(event) {
       event.preventDefault();
       var newCharacter = {
@@ -73,7 +73,7 @@
         forcePoints: $("#force-points").val().trim()
       };
 
-      // Question: What does this code do??
+      // Question: What does this code do?? post the new character
       $.post("/api/characters", newCharacter)
         .then(function(data) {
           console.log("add.html", data);

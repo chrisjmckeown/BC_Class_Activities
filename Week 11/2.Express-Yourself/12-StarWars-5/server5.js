@@ -8,6 +8,11 @@ var PORT = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// how the above is working buf return raw buf.tostring() converts into something understandable
+// app.use(express.json({
+//   verify: (req, res, buf) => (req.rawBody = buf.toString());
+// }));
+
 // Data
 var characters = [
   {
