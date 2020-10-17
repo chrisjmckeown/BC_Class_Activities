@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type ="text/javascript">
+        class Animal{
+            constructor(age){
+                this.age = age;
+                console.log("An animal was created.");
+            }
+            speak(){
+                console.log("speak");
+            }
+            feed(){
+                console.log("feeding");
+            }
+            printAge(){
+                console.log(this.age);
+            }
+        }
+
+        const dog = new Animal(20);
+        dog.speak();
+        dog.feed();
+        dog.printAge();
+    </script>
+</body>
+</html>
