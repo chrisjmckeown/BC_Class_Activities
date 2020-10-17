@@ -23,10 +23,23 @@
             }
         }
 
-        const dog = new Animal(20);
+        class Dog extends Animal{
+            constructor(age){
+                super(age);
+            }
+            speak(){
+                console.log("woof");
+            }
+        }
+
+        const dog = new Dog(20);
         dog.speak();
         dog.feed();
-        dog.printAge();
+        dog.printAge()
+        const cat = new Animal(10);
+        cat.speak();
+        cat.feed();
+        cat.printAge();
     </script>
 </body>
 </html>
