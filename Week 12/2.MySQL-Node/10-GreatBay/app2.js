@@ -1,7 +1,5 @@
 const mysql = require('mysql');
 const inquirer = require('inquirer');
-const { async } = require('rxjs');
-const { promisify } = require('util');
 
 const databaseConfig = {
     host: "localhost",
@@ -12,40 +10,75 @@ const databaseConfig = {
 
 const pool = mysql.createPool(databaseConfig);
 
-async function removeItem(id) {
-    return new Promise((resolve) => {
-        pool.query('DELETE FROM items WHERE id=' + id, (error) => {
-            resolve({ result: !error });
-        });
-    });
-}
-
-async function addItem(name, startingbid) {
+async function createAuction(name, startingbid) {
     return new Promise((resolve) => {
         pool.query('INSERT INTO items SET ?',
-        {
-            name: name,
-            startingbid: startingbid
-        }, (error) => {
-            resolve({ result: !error });
-        });
+            {
+                name: name,
+                startingbid: startingbid
+            }, (error) => {
+                resolve({ result: !error });
+            });
     });
 }
-run();
-async function run(){    
-    const { selection :ans1 } = await selections();
-    console.log(ans1);
-    const answer = await addItem("test", 10);
-    console.log(answer);
-    const { selection: ans2 } = await selections();
-    console.log(ans2);
+
+async function placeBid(name, currentbid) {
+    return new Promise((resolve) => {
+        pool.query('UPDATE items SET ? WHERE ?', [
+            {
+                currentbid: currentbid
+            },
+            {
+                name: name
+            }], (error) => {
+                resolve({ result: !error });
+            });
+    });
 }
 
-// const promiseQuery = promisify(pool.query).bind(pool);
-// const promisePoolEnd = promisify(pool.end).bind(pool);
-// run();
+async function getAllItems() {
+    return new Promise((resolve) => {
+        pool.query("SELECT name, currentbid FROM items",
+            (error, data) => {
+                resolve({ result: !error, data });
+            });
+    });
+}
 
-function selections() {
+run();
+async function run() {
+    while (true) {
+        const { selection } = await selectionPrompt();
+        switch (selection) {
+            case "Post":
+                const { name: newItem, startingbid } = await auctionDetailPrompt();
+                const result = await createAuction(newItem, startingbid);
+                if (result) { console.log(`${newItem} added to the Auction!`); }
+                break;
+            case "Bid":
+                const { data: auctionItems } = await getAllItems();
+                const { name: selectedItem, currentbid } = await bidDetailPrompt(auctionItems);
+                let bid = 0;
+                auctionItems.forEach(item => {
+                    if (item.name === selectedItem) {
+                        bid = item.currentbid;
+                    }
+                })
+                if (bid < currentbid) {
+                    const result = await placeBid(selectedItem, currentbid);
+                    if (result) { console.log(`You are winning the auction with a bid of ${currentbid}`); }
+                } else {
+                    console.log(`To low, the current bid is ${bid}`);
+                }
+                break;
+            default:
+                pool.end();
+                return;
+        }
+    }
+}
+
+function selectionPrompt() {
     return inquirer.prompt([
         {
             type: "list",
@@ -60,144 +93,47 @@ function selections() {
     ]);
 }
 
-// function insert(name, startingbid) {
-//     "INSERT INTO items SET ?",
-//     {
-//         name: name,
-//         startingbid: startingbid
-//     }
-// }
+function auctionDetailPrompt() {
+    return inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "What is the item name?"
+        },
+        {
+            type: "input",
+            name: "startingbid",
+            message: "What would you like your starting bid to be?",
+            validate: (value) => {
+                if (isNaN(value) === false) {
+                    return true;
+                }
+                return false;
+            }
+        }
+    ]);
+}
 
-// async function run() {
-//     // const query = `select * from items;`
-//     const { selection } = await selections();
-//     const result = await promiseQuery(insert("test", 10))
-//     console.log(result);
-
-//     await promisePoolEnd();
-// }
-
-
-// con.connect(function (err) {
-//     if (err) throw err;
-//     console.log("connected as id " + con.threadId + "\n");
-//     go();
-// });
-
-// function go() {
-//     inquirer.prompt([
-//         {
-//             type: "list",
-//             message: "Do want to?",
-//             name: "selection",
-//             choices: [
-//                 "Post",
-//                 "Bid",
-//                 "Exit"
-//             ]
-//         }
-//     ]).then(({ selection }) => {
-//         if (selection === "Post") {
-//             console.log("Posting an item")
-//             postAnItem();
-//         } else if (selection === "Bid") {
-//             console.log("Bidding on an item")
-//             bidOnAnItem();
-//         } else {
-//             console.log("bye bye")
-//             con.end();
-//         }
-//     });
-// }
-
-// function postAnItem() {
-//     inquirer.prompt([
-//         {
-//             type: "input",
-//             name: "name",
-//             message: "What is the item name?"
-//         },
-//         {
-//             type: "input",
-//             name: "startingbid",
-//             message: "What would you like your starting bid to be?",
-//             validate: (value) => {
-//                 if (isNaN(value) === false) {
-//                     return true;
-//                 }
-//                 return false;
-//             }
-//         }
-//     ]).then((data) => {
-//         const { name, startingbid } = data;
-//         con.query(
-//             "INSERT INTO items SET ?",
-//             {
-//                 name: name,
-//                 startingbid: startingbid
-//             },
-//             function (err, res) {
-//                 if (err) throw err;
-//                 console.log(res.affectedRows + " item inserted!\n");
-//                 go();
-//             });
-//     });
-// }
-
-// function bidOnAnItem() {
-
-//     con.query("SELECT name, currentbid FROM items", function (err, res) {
-//         if (err) throw err;
-//         inquirer.prompt([
-//             {
-
-//                 type: "list",
-//                 message: "Select the item to bid on",
-//                 name: "name",
-//                 choices: [
-//                     ...res
-//                 ]
-//             },
-//             {
-//                 type: "input",
-//                 name: "currentbid",
-//                 message: "What would you like your bid to be?",
-//                 validate: (value) => {
-//                     if (isNaN(value) === false) {
-//                         return true;
-//                     }
-//                     return false;
-//                 }
-//             }
-//         ]).then((data) => {
-//             const { name, currentbid } = data;
-//             let bid = 0;
-//             res.forEach(item => {
-//                 if (item.name === name) {
-//                     bid = item.currentbid;
-//                 }
-//             })
-//             if (bid < currentbid) {
-//                 con.query(
-//                     "UPDATE items SET ? WHERE ?",
-//                     [
-//                         {
-//                             currentbid: currentbid
-//                         },
-//                         {
-//                             name: name
-//                         }
-//                     ],
-//                     function (err, res) {
-//                         if (err) throw err;
-//                         console.log("You are winning the auction!");
-//                         go();
-//                     }
-//                 );
-//             } else {
-//                 console.log("To low, please try again!");
-//                 go();
-//             }
-//         });
-//     });
-// }
+function bidDetailPrompt(auctionItems) {
+    return inquirer.prompt([
+        {
+            type: "list",
+            message: "Select the item to bid on",
+            name: "name",
+            choices: [
+                ...auctionItems
+            ]
+        },
+        {
+            type: "input",
+            name: "currentbid",
+            message: "What would you like your bid to be?",
+            validate: (value) => {
+                if (isNaN(value) === false) {
+                    return true;
+                }
+                return false;
+            }
+        }
+    ]);
+}
