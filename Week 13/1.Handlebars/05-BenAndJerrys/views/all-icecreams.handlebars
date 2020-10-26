@@ -1,0 +1,23 @@
+{{!-- <style media="screen">
+  li {
+    background-color: wheat;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 50%;
+    font-family: sans-serif;
+  }
+</style>
+
+<h1>Icecream List</h1>
+
+<ul>
+{{#each icecreams }}
+  <li>{{@index}} Name: {{name}}... Price: {{price}}... Awesomeness: {{awesomeness}}...</li>
+{{/each}}
+</ul> --}}
+{{#each icecreams}}
+  <p>Flavor: {{name}}</p>
+  <p>Price: ${{price}}</p>
+  <p>Awesomeness: {{awesomeness}}</p>
+  <hr>
+{{/each}}
