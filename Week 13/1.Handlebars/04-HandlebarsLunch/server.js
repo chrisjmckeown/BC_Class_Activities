@@ -34,7 +34,7 @@ app.get("/weekend", function(req, res) {
 app.get("/lunches", function(req, res) {
   res.render("all-lunches", {
     foods: lunches,
-    eater: "david"
+    eater: "David"
   });
 });
 
