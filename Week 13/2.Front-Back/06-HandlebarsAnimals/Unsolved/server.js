@@ -43,14 +43,14 @@ app.get("/dog", (req, res) => {
 app.get("/all-pets", (req, res) => {
   // Handlebars requires an object to be sent to the index.handlebars file.
   // 2. Send the animals to the index.handlebars file. Remember that animals is an array and not an object.
-  const pets = animals.filter(animal => animal.pet === true);
+  const pets = animals.filter(animal => animal.pet);
   res.render("index", { animals: pets, header: "Pets" });
 });
 
 app.get("/all-non-pets", (req, res) => {
   // Handlebars requires an object to be sent to the index.handlebars file.
   // 3. Send all the animals that are not pets to the index.handlebars file.
-  const nonPets = animals.filter(animal => animal.pet === false);
+  const nonPets = animals.filter(animal => !animal.pet);
   res.render("index", { animals: nonPets, header: "Non-pets" });
 });
 
