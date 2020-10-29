@@ -1,13 +1,15 @@
-var connection = require("../config/connection.js");
+const connection = require("../config/connection.js");
 
-var orm = {
-  selectWhere: function(tableInput, colToSearch, valOfCol) {
-    var queryString = "SELECT * FROM ?? WHERE ?? = ?";
+const orm = {
+  selectWhere: (tableInput, colToSearch, valOfCol) => {
+    return new Promise((resolve, reject) => {
+      const queryString = "SELECT * FROM ?? WHERE ?? = ?";
 
-    connection.query(queryString, [tableInput, colToSearch, valOfCol], function(err, result) {
-      if (err) throw err;
-      return result;
-    });
+      connection.query(queryString, [tableInput, colToSearch, valOfCol], function (err, result) {
+        if (err) return reject(err);
+        return resolve(result);
+      });
+    })
   }
 };
 
