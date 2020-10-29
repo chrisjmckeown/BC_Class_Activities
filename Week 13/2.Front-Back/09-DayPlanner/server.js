@@ -19,7 +19,7 @@ var connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "",
+  password: "bootcamp",
   database: "day_planner_db"
 });
 
@@ -36,7 +36,7 @@ connection.connect(function(err) {
 app.get("/", function(req, res) {
   connection.query("SELECT * FROM plans;", function(err, data) {
     if (err) {
-      return res.status(500).end();
+      return res.status(500).end();// ending communication
     }
 
     res.render("index", { plans: data });
