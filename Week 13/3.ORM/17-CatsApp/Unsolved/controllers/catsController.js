@@ -7,10 +7,8 @@ const cat = require("../models/cat.js");
 
 // Create all our routes and set up logic within those routes where required.
 router.get("/", (req, res) => {
-  cat.all(function(data) {
-    var hbsObject = {
-      cats: data
-    };
+  cat.all((data) => {
+    var hbsObject = { cats: data };
     res.render("index", hbsObject);
   });
 });
@@ -20,7 +18,7 @@ router.post("/api/cats", (req, res) => {
     "name", "sleepy"
   ], [
     req.body.name, req.body.sleepy
-  ], function(result) {
+  ],  (result) => {
     // Send back the ID of the new quote
     res.json({ id: result.insertId });
   });
@@ -31,7 +29,7 @@ router.put("/api/cats/:id", (req, res) => {
 
   cat.update({
     sleepy: req.body.sleepy
-  }, condition, function(result) {
+  }, condition, (result) => {
     if (result.changedRows == 0) {
       // If no rows were changed, then the ID must not exist, so 404
       return res.status(404).end();
@@ -45,7 +43,7 @@ router.put("/api/cats/:id", (req, res) => {
 router.delete("/api/cats/:id", (req, res) => {
   var condition = "id = " + req.params.id;
 
-  cat.delete(condition, function(result) {
+  cat.delete(condition, (result) => {
     if (result.affectedRows == 0) {
       // If no rows were changed, then the ID must not exist, so 404
       return res.status(404).end();
