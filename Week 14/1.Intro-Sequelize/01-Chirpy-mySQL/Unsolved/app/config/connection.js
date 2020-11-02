@@ -3,19 +3,19 @@
 // *********************************************************************************
 
 // Require mysql
-var mysql = require("mysql");
+const mysql = require("mysql");
 
 // Set up our connection information
-var connection = mysql.createConnection({
-  host: "",
+const connection = mysql.createConnection({
+  host: "localhost",
   port: 3306,
-  user: "",
-  password: "",
-  database: ""
+  user: "root",
+  password: "bootcamp",
+  database: "chirpy"
 });
 
 // Connect to the database
-connection.connect(function(err) {
+connection.connect((err) => {
   if (err) {
     console.error("error connecting: " + err.stack);
     return;
