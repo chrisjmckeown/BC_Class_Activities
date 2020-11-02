@@ -3,13 +3,13 @@
 * Spend the next few minutes with your partner answering the following questions. You should be using the Sequelize Documentation (and whatever other references you find online).
 
   ```
-  	- Answer: What is Sequelize?
+  	- Answer: What is Sequelize? ORM
 
-  	- Answer: What advantages does it offer?
+  	- Answer: What advantages does it offer? SQL agnostic
 
-  	- Answer: How do I install it? How do I incorporate it into my app?
+  	- Answer: How do I install it? How do I incorporate it into my app? npm
 
-  	- Answer: What the heck is a Sequelize model? What role will it play?
+  	- Answer: What the heck is a Sequelize model? What role will it play? represents a sql table
 
   	- Answer: Let's say I have the below table in MySQL. 
 
@@ -22,6 +22,8 @@
   		| Zambia      | 260       | Lusaka    | 1964             |
 
   		- How would I model it in Sequelize? 
+
+		  
 
   		- How would I query for all the records where the Independence Year was less than 50 years ago?
 

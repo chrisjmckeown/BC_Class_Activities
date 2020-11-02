@@ -23,7 +23,7 @@ module.exports = (app) => {
     console.log(req.body);
     const dbQuery = "INSERT INTO chirps (author, chirp, date_created) VALUES (?,?,?)";
     con.query(dbQuery, [req.body.author, req.body.chirp, req.body.date_created], (err, result) => {
-      if (err) throw err;
+      if (err) return res.status(500).end();
       console.log("Chirp Successfully Saved!");
       res.end();
     });
