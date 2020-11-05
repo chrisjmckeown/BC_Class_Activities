@@ -16,11 +16,17 @@ if (config.use_env_variable) {
 
 fs
   .readdirSync(__dirname)
+  // filtered our all of the js files
   .filter(file => {
+    // .env .DS_STORE .git
+    // index.js
+    // is it a js file
     return (file.indexOf(".") !== 0) && (file !== basename) && (file.slice(-3) === ".js");
   })
+  // load all files into one object called db
   .forEach(file => {
     var model = sequelize["import"](path.join(__dirname, file));
+    
     db[model.name] = model;
   });
 

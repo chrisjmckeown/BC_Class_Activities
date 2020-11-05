@@ -1,16 +1,18 @@
-// Dependencies
-// =============================================================
+// Sequelize (capital) references the standard library
+const Sequelize = require("sequelize");
+const sequelize = require("../config/connection.js");
 
-// Require the sequelize library
-// Require the connection to the database (connection.js)
+const Book = sequelize.define("book", {
+    title: Sequelize.STRING,
+    author: Sequelize.STRING,
+    genre: Sequelize.STRING,
+    pages: Sequelize.INTEGER
+}, {
+    freezeTableName: true
+});
 
-// Create a "Book" model with the following configuration
+// Syncs with DB
+Book.sync();
 
-// 1. A title property of type STRING
-// 2. An author property of type STRING
-// 3. A genre property of type STRING
-// 4. A pages property of type INTEGER
-
-// Sync model with DB
-
-// Export the book model for other files to use
+// Makes the Book Model available for other files (will also create a table)
+module.exports = Book;
