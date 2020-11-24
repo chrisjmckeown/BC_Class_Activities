@@ -3,7 +3,9 @@ var db = require("../models");
 module.exports = function(app) {
   app.get("/api/authors", function(req, res) {
     // 1. Add a join to include all of each Author's Posts
-    db.Author.findAll({}).then(function(dbAuthor) {
+    db.Author.findAll({
+      include: [db.Post]
+    }).then(function(dbAuthor) {
       res.json(dbAuthor);
     });
   });
@@ -13,7 +15,8 @@ module.exports = function(app) {
     db.Author.findOne({
       where: {
         id: req.params.id
-      }
+      },
+      include: [db.Post]
     }).then(function(dbAuthor) {
       res.json(dbAuthor);
     });
