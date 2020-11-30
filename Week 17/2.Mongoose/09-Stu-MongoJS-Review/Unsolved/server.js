@@ -2,23 +2,22 @@
 
 const express = require("express");
 const mongojs = require("mongojs");
-
 const logger = require("morgan");
-
-const app = express();
-
-app.use(logger("dev"));
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-app.use(express.static("public"));
 
 const databaseUrl = "warmup";
 const collections = ["books"];
-
 const db = mongojs(databaseUrl, collections);
-db.on("error", error => {
+
+const app = express();
+
+const PORT = process.env.PORT || 8080;
+
+app.use(logger("dev"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static("public"));
+
+db.on("error", (error) => {
   console.log("Database Error:", error);
 });
 
@@ -38,27 +37,72 @@ app.post("/submit", ({ body }, res) => {
   // we have to do it here, because the ajax post will convert it
   // to a string instead of a boolean
   book.read = false;
+  db.books.insert(book, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(data);
+    }
+  });
 });
 
 // Find all books marked as read
-app.get("/read", (req, res) => {});
+app.get("/read", (req, res) => {
+  db.books.find({ read: true }, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(data);
+    }
+  });
+});
 
 // Find all books marked as unread
-app.get("/unread", (req, res) => {});
+app.get("/unread", (req, res) => {
+  db.books.find({ read: false }, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(data);
+    }
+  });
+});
 
 // Mark a book as having been read
 app.put("/markread/:id", (req, res) => {
   // Remember: when searching by an id, the id needs to be passed in
   // as (mongojs.ObjectId(IdYouWantToFind))
+  setBook(true, req.params.id, res);
 });
 
 // Mark a book as having been not read
 app.put("/markunread/:id", (req, res) => {
   // Remember: when searching by an id, the id needs to be passed in
   // as (mongojs.ObjectId(IdYouWantToFind))
+  setBook(false, req.params.id, res);
 });
 
-// Listen on port 3000
-app.listen(3000, () => {
-  console.log("App running on port 3000!");
+const setBook = (state, id, res) => {
+  db.books.update(
+    {
+      _id: mongojs.ObjectId(id),
+    },
+    {
+      $set: {
+        read: state,
+      },
+    },
+    (err, data) => {
+      if (err) {
+        console.log(err);
+        res.send(error);
+      } else {
+        res.send(data);
+      }
+    }
+  );
+};
+// Listen on port
+app.listen(PORT, () => {
+  console.log("App running on: http://localhost:" + PORT);
 });

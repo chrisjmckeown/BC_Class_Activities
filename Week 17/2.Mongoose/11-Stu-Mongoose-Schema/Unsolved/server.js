@@ -26,6 +26,20 @@ app.post("/submit", ({body}, res) => {
     });
 });
 
+// app.post("/submit", ({body}, res) => {
+//   const array = [
+//     {username: "Jelly", password: "123456",email:"chris@kiwicodes.com"},
+//     {username: "John", password: "abcdefg",email:"chris.j.mckeown@hotmail.com"}
+// ];
+//   User.insertMany(array)
+//     .then(dbUser => {
+//       res.json(dbUser);
+//     })
+//     .catch(err => {
+//       res.json(err);
+//     });
+// });
+
 app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}!`);
+  console.log("App running on: http://localhost:" + PORT);
 });
