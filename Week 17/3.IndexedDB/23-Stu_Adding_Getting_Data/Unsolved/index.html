@@ -9,17 +9,38 @@
   <body>
     <h1>Open Your Developer Tools > Application > IndexedDB</h1>
     <script>
-      const request = window.indexedDB.open("toDoList", 1);
+      const request = indexedDB.open("toDoListDB", 1);
       
       request.onupgradeneeded = event => {
-        const db = event.target.result;
-       // CODE HERE
+        const {target:{result: db}} = event;
+        const objectStore = db.createObjectStore("toDoList", { autoIncrement : true });
+        objectStore.createIndex("dueDateIndex", "dueDate");
       }
 
       
       request.onsuccess = () => {
         const db = request.result;
         // CODE HERE
+        const toDoListStore = db.transaction(["toDoList"], "readwrite").objectStore("toDoList");
+        const dueDateIndex = toDoListStore.index("dueDateIndex");
+  
+        // Adds data to our objectStore
+        toDoListStore.add({ dueDate: "Friday" });
+        toDoListStore.add({ dueDate: "Friday" });
+        toDoListStore.add({ dueDate: "Saturday" });
+        toDoListStore.add({ dueDate: "Sunday" });
+       
+        // Return an item by keyPath
+        const getRequest = toDoListStore.get(1);
+        getRequest.onsuccess = () => {
+          console.log(getRequest.result);
+        };
+
+        // Return an item by index
+        const getRequestIdx = dueDateIndex.getAll("Friday");
+        getRequestIdx.onsuccess = () => {
+          console.log(getRequestIdx.result); 
+        }; 
       };
 
     </script>
