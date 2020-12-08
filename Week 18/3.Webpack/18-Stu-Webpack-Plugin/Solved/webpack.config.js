@@ -5,7 +5,7 @@ const config = {
   entry: "./public/assets/js/app.js",
   output: {
     path: __dirname + "/public/dist",
-    filename: "bundle.js"
+    filename: "bundle.js",
   },
   mode: "production",
   plugins: [
@@ -33,14 +33,14 @@ const config = {
           src: path.resolve(
             __dirname,
             "public/assets/images/icons/icon-512x512.png"
-            ),
+          ),
           // the plugin will generate an image for each size
           // included in the size array
-          size: [72, 96, 128, 144, 152, 192, 384, 512]
-        }
-      ]
-    })
-  ]
+          size: [72, 96, 128, 144, 152, 192, 384, 512],
+        },
+      ],
+    }),
+  ],
 };
 
 module.exports = config;

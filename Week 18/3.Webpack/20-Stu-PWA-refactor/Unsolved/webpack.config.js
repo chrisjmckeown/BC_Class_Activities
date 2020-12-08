@@ -10,6 +10,7 @@ const config = {
   },
   plugins: [
     new WebpackPwaManifest({
+      filename: "manifest.json",
       name: "Images App",
       short_name: "Images App",
       description: "An application for images",
@@ -25,9 +26,20 @@ const config = {
         }
       ]
     })
-  ]
+  ],
   // add configuration to use babel-loader here
-
+  module: {
+    rules: [{
+      test: /\.m?js$/,
+      exclude: /(node_modules)/,
+      use: {
+        loader: "babel-loader",
+        options: {
+          presets: ["@babel/preset-env"]
+        }
+      }
+    }]
+  }
   
 };
 module.exports = config;

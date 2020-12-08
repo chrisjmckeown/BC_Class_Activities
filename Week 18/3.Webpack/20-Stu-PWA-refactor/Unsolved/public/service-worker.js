@@ -43,7 +43,6 @@ const FILES_TO_CACHE = [
   "/assets/images/38.jpg"
 ];
 
-
 const STATIC_CACHE = "static-cache-v1";
 const RUNTIME_CACHE = "runtime-cache";
 
