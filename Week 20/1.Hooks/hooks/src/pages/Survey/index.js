@@ -21,10 +21,8 @@ function Survey() {
   return (
     <div className='container'>
       <h1>Use this form to provide feedback for our product!</h1>
-
       <h4>What was your favorite thing about our product?</h4>
       <textarea {...favoriteThing.eventBind} />
-
       <h4>How would you rate our product?</h4>
       <div className='form-group'>
         <input
